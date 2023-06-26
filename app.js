@@ -57,6 +57,7 @@ var app = new Vue({
       },
       plugins: {
         legend: {
+          display: true,
             labels: {
                 // This more specific font property overrides the global property
                 font: {

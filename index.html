@@ -64,7 +64,6 @@
       <div class="row align-items-start">
         <div class="col-12 text-center">
             <div class="card text-bg-light">
-                <div class="card-header">Primeros 3 lugares</div>
                 <div class="card-body">
                     <!-- show only on mobile-->
                     <div class="d-block d-sm-none">
@@ -89,12 +88,13 @@
                 </div>
               </div>
             </div>
-        <div class="col-12" style="height: 600px">
+        <div class="col-12" style="height:60vh">
             <vue-chart
             :data="chartData"
             :options="chartOptions"
             :update-config="{duration: 800, easing: 'easeOutBounce'}"
             type="bar"
+            style="position: relative; height:20vh; width:60vw; margin: auto"
           />
         </div>
       </div>
