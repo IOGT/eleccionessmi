@@ -31,7 +31,28 @@ var app = new Vue({
   el: "#app",
   data: {
     chartOptions: {
-      scales: {yAxes: [{ticks: {beginAtZero: true}}]},
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true,
+              minor: {
+                fontSize: 18
+             }
+          }
+        }
+        ],
+        xAxes: [
+          {
+            ticks: {
+              beginAtZero: true,
+              minor: {
+                fontSize: 18
+              }
+            }
+          }
+        ]
+      },
       plugins: {
         legend: {
             labels: {
@@ -67,49 +88,7 @@ var app = new Vue({
       {
         data: [21, 22, 10, 28, 16, 21, 13, 30],
       },
-    ],
-    chartOptions: {
-      chart: {
-        height: 350,
-        type: "bar",
-        events: {
-          click: function (chart, w, e) {
-            // console.log(chart, w, e)
-          },
-        },
-      },
-      colors: [],
-      plotOptions: {
-        bar: {
-          columnWidth: "45%",
-          distributed: true,
-        },
-      },
-      dataLabels: {
-        enabled: false,
-      },
-      legend: {
-        show: false,
-      },
-      xaxis: {
-        categories: [
-          ["John", "Doe"],
-          ["Joe", "Smith"],
-          ["Jake", "Williams"],
-          "Amber",
-          ["Peter", "Brown"],
-          ["Mary", "Evans"],
-          ["David", "Wilson"],
-          ["Lily", "Roberts"],
-        ],
-        labels: {
-          style: {
-            colors: [],
-            fontSize: "12px",
-          },
-        },
-      },
-    },
+    ]
   },
   mounted() {
     this.fetchData(); // Fetch data on page load
@@ -119,6 +98,12 @@ var app = new Vue({
   },
   methods: {
     fetchData() {
+      const images = ['https://i.stack.imgur.com/2RAv2.png', 'https://i.stack.imgur.com/Tq5DA.png', 'https://i.stack.imgur.com/3KRtW.png', 'https://i.stack.imgur.com/iLyVi.png']
+      .map(png => {
+        const image = new Image();
+        image.src = png;
+        return image;
+      });
       const urlCorte =
         "https://corsproxy.io/?" +
         encodeURIComponent(
@@ -173,12 +158,12 @@ var app = new Vue({
 
         // Add the relative percentages to the chart labels
         this.chartData.labels = partidos_names.map(
-          (name, index) => `${name} (${relativePercentages[index]})`
+          (name, index) => `${name} #${votos_partidos[index]}`
         );
 
-        this.chartOptions.xaxis.categories =  partidos_names.map(
-          (name, index) => `${name} (${relativePercentages[index]})`
-        );
+        // this.chartOptions.xaxis.categories =  partidos_names.map(
+        //   (name, index) => `${name} (${relativePercentages[index]})`
+        // );
 
         const totalActas = data_municipio.stats.actas.num;
         this.totalActas = totalActas;
