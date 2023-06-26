@@ -31,6 +31,9 @@ function hexToRgb(hex) {
     el: "#app",
     data: {
       progress: 0,
+      totalActas: 0,
+      actasDigitadas: 0,
+      actasContabilizadas: 0,
       pidsInfo: {},
       pidsPA: {},
       message: "",
@@ -75,8 +78,9 @@ function hexToRgb(hex) {
               hexToRgb(this.pidsInfo[pid].color)
             );
             const votos_partidos = this.pidsPA.map(
-              (pid) => parseInt(votosPA[pid].num)
+              (pid) => parseInt(votosPA[pid].num) || 0
             );
+            console.log(votos_partidos)
             this.chartData.labels = partidos_names;
             this.chartData.datasets[0].data = votos_partidos;
             this.chartData.backgroundColor = partidos_colores;
@@ -101,16 +105,20 @@ function hexToRgb(hex) {
             );
 
             const totalActas = data_municipio.stats.actas.num
+            this.totalActas = totalActas
             // console.log(totalActas)
             const actasDigitadas = data_municipio.stats.actas.capt.num
+            this.actasDigitadas = actasDigitadas
             // console.log(actasDigitadas)
             const actasContabilizadas = data_municipio.stats.actas.cont.num
+            this.actasContabilizadas = actasContabilizadas
             // console.log(actasContabilizadas)
 
             const porcentajeContabilizada = data_municipio.stats.actas.cont.pct4
             // console.log(porcentajeContabilizada)
             // progress rounded to 2 decimals
             this.progress = Math.round(porcentajeContabilizada * 100) / 100
+            // this.progress = 50
           })
           .catch((error) => {
             console.error("Error fetching data:", error);
