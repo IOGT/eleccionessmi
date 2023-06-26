@@ -30,6 +30,19 @@ function hexToRgb(hex) {
 var app = new Vue({
   el: "#app",
   data: {
+    chartOptions: {
+      scales: {yAxes: [{ticks: {beginAtZero: true}}]},
+      plugins: {
+        legend: {
+            labels: {
+                // This more specific font property overrides the global property
+                font: {
+                    size: 20
+                }
+            }
+        }
+    }
+    },
     progress: 0,
     totalActas: 0,
     actasDigitadas: 0,
@@ -40,7 +53,10 @@ var app = new Vue({
     title: "SMI",
     chartData: {
       labels: ["Boller", "Brus", "Chips", "Frukt", "Fisk", "Snop"],
-      datasets: [{ data: [12, 9, 3, 5, 2, 15], borderWidth: 2 }],
+      datasets: [
+        { 
+          label: '# de votos',
+          data: [12, 9, 3, 5, 2, 15], borderWidth: 2 }],
     },
     // donut data
     progressData: {

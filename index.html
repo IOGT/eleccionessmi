@@ -68,7 +68,7 @@
         <div class="col" style="height: 600px">
             <vue-chart
             :data="chartData"
-            :options="{scales: {yAxes: [{ticks: {beginAtZero: true}}]}}"
+            :options="chartOptions"
             :update-config="{duration: 800, easing: 'easeOutBounce'}"
             type="bar"
           />
