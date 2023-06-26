@@ -30,7 +30,9 @@ function hexToRgb(hex) {
 var app = new Vue({
   el: "#app",
   data: {
+    scoreBoard: [],
     chartOptions: {
+      responsive: true,
       scales: {
         yAxes: [
           {
@@ -148,6 +150,20 @@ var app = new Vue({
           (color) => `rgba(${color.r}, ${color.g}, ${color.b}, 0.2)`
         );
 
+        const partidos_votos = this.pidsPA.map((pid) => ({
+          label: this.pidsInfo[pid].siglas,
+          data: parseInt(votosPA[pid].num) || 0,
+          color: this.pidsInfo[pid].color,
+          image: `/imagenes/${this.pidsInfo[pid].siglas}.png`
+        }));
+
+        console.log(partidos_votos)
+
+        partidos_votos.sort((a, b) => b.data - a.data);
+        console.log(partidos_votos)
+
+        // set only last 3
+        this.scoreBoard = partidos_votos.slice(0, 3);
         // Calculate the sum of all data points
         const sum = votos_partidos.reduce((total, value) => total + value, 0);
 

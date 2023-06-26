@@ -62,10 +62,34 @@
         </div>
       </div>
       <div class="row align-items-start">
-        <!-- <div class="col-2">
-                <vue-chart :data="progressData" type="pie"></vue-chart>
-            </div> -->
-        <div class="col" style="height: 600px">
+        <div class="col-12 text-center">
+            <div class="card text-bg-light">
+                <div class="card-header">Primeros 3 lugares</div>
+                <div class="card-body">
+                    <!-- show only on mobile-->
+                    <div class="d-block d-sm-none">
+                        <ul>
+                            <li v-for="(partido, index) in scoreBoard" :key="partido.label">
+                                <b># {{index + 1}}</b>
+                                <img :src="partido.image" :alt="partido.label" style="height: 50px" />
+                                <span class="badge bg-primary">{{partido.data}}</span><br>
+                            </li>
+                        </ul>
+                        </div>
+                    <!-- show only on desktop and tablets-->
+                    <div class="d-none d-sm-block">
+                        <ul>
+                            <li v-for="(partido, index) in scoreBoard" :key="partido.label">
+                                <b># {{index + 1}}</b>
+                                <img :src="partido.image" :alt="partido.label" style="height: 50px" />
+                                <span class="badge bg-primary">{{partido.data}}</span>
+                            </li>
+                        </ul>
+                        </div>
+                </div>
+              </div>
+            </div>
+        <div class="col-12" style="height: 600px">
             <vue-chart
             :data="chartData"
             :options="chartOptions"

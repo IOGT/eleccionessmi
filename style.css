@@ -16,4 +16,21 @@
     canvas {
         height: 303px !important;
     }
+    li {
+        display: block;
+        font-size: 2em;
+        margin-right: 0px; /* Adjust the spacing between items */
+      }
 }
+
+.ul {
+    list-style-type: none;
+    padding: 0;
+    list-style: none;
+  }
+  
+li {
+    display: inline;
+    font-size: 2em;
+    margin-right: 2em; /* Adjust the spacing between items */
+  }
