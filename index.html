@@ -10,18 +10,22 @@
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
       crossorigin="anonymous"
     />
-<!-- <link rel="stylesheet" href="style.css"> -->
-<script>
-    var randomValue = Math.floor(Math.random() * 1000000);
-    document.write('<link rel="stylesheet" type="text/css" href="style.css?v=' + randomValue + '">');
-  </script>
-    <link rel="stylesheet" href="progress.css">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <script>
+      var randomValue = Math.floor(Math.random() * 1000000);
+      document.write(
+        '<link rel="stylesheet" type="text/css" href="style.css?v=' +
+          randomValue +
+          '">'
+      );
+    </script>
+    <link rel="stylesheet" href="progress.css" />
     <!-- page will reload every 10 minutes -->
     <meta http-equiv="refresh" content="600" />
   </head>
   <body>
     <div class="container text-center" id="app">
-<img src="imagenes/banner.png" class="banner">
+      <img src="imagenes/banner.png" class="banner" />
       <!-- <h1>Eleciones SMI 2023</h1> -->
       <div
         class="progress"
@@ -35,13 +39,16 @@
         <div
           class="progress-bar progress-bar-striped progress-bar-animated overflow-visible text-dark"
           :style="{ width: progress + '%' }"
-        >Actas contabilizadas {{actasContabilizadas}} de {{totalActas}} - {{progress}}%</div>
+        >
+          Actas contabilizadas {{actasContabilizadas}} de {{totalActas}} -
+          {{progress}}%
+        </div>
       </div>
       <div class="row align-items-start">
         <!-- <div class="col-2">
                 <vue-chart :data="progressData" type="pie"></vue-chart>
             </div> -->
-        <div class="col">
+        <div class="col" style="height: 469px">
           <vue-chart
             :data="chartData"
             :options="{scales: {yAxes: [{ticks: {beginAtZero: true}}]}}"
@@ -50,22 +57,34 @@
           />
         </div>
       </div>
-      <div class="fb-comments" data-href="https://elecciones.ixtatan.com/?2023" data-width="100%" data-numposts="25"></div>
-      <!-- Footer with credits -->
-    <footer class="footer">
-        <div class="container">
-          <span class="text-muted"
-            >Desarrollado por <a href="https://io.gt">IO.GT</a> con el apoyo de
-            <a href="https://ixtatan.com">IXTATAN</a> e
-            <a href="https://www.ixtanet.com/">IxtaNet</a>
-          </span>
-        </div>
-      </footer>
+      <div class="row align-items-start">
+      <div
+        class="fb-comments"
+        data-href="https://elecciones.ixtatan.com/?2023"
+        data-width="100%"
+        data-numposts="25"
+      ></div>
     </div>
     
+      <!-- Footer with credits -->
+      <footer class="container p-4 rounded">
+        <span class="text-muted"
+          >Desarrollado por <a href="https://io.gt">IO.GT</a> con el apoyo de
+          <a href="https://ixtatan.com">IXTATAN</a> e
+          <a href="https://www.ixtanet.com/">IxtaNet</a>
+        </span>
+      </footer>
+
+    </div>
 
     <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v17.0&appId=2285736535050032&autoLogAppEvents=1" nonce="fkUZo7NX"></script>
+    <script
+      async
+      defer
+      crossorigin="anonymous"
+      src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v17.0&appId=2285736535050032&autoLogAppEvents=1"
+      nonce="fkUZo7NX"
+    ></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
