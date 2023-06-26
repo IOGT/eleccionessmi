@@ -30,6 +30,7 @@ function hexToRgb(hex) {
   var app = new Vue({
     el: "#app",
     data: {
+      progress: 0,
       pidsInfo: {},
       pidsPA: {},
       message: "",
@@ -41,7 +42,7 @@ function hexToRgb(hex) {
       // donut data
       progressData :{
         labels: ["Digitadas", "Pendientes"],
-        datasets: [{ data: [0,0], borderWidth: 2 }]
+        datasets: [{ data: [50,50], borderWidth: 2 }]
       },
     },
     mounted() {
@@ -65,8 +66,6 @@ function hexToRgb(hex) {
             let data_municipio = response.data.divs[17];
             this.pidsInfo = data_municipio.pidsInfo;
             this.pidsPA = data_municipio.pidsPA;
-            console.log(this.pidsInfo);
-            console.log(this.pidsPA);
             let votosPA = data_municipio.votosPA;
   
             const partidos_names = this.pidsPA.map(
@@ -100,6 +99,18 @@ function hexToRgb(hex) {
             this.chartData.labels = partidos_names.map(
               (name, index) => `${name} (${relativePercentages[index]})`
             );
+
+            const totalActas = data_municipio.stats.actas.num
+            console.log(totalActas)
+            const actasDigitadas = data_municipio.stats.actas.capt.num
+            console.log(actasDigitadas)
+            const actasContabilizadas = data_municipio.stats.actas.cont.num
+            console.log(actasContabilizadas)
+
+            const porcentajeContabilizada = data_municipio.stats.actas.cont.pct4
+            console.log(porcentajeContabilizada)
+            // progress rounded to 2 decimals
+            this.progress = Math.round(porcentajeContabilizada * 100) / 100
           })
           .catch((error) => {
             console.error("Error fetching data:", error);

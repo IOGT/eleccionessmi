@@ -1,0 +1,15 @@
+
+
+.bar {
+    background: linear-gradient(to right, #B993D6, #8CA6DB);
+    height: 20px;
+    width: 15px;
+    border-radius: 9px;
+    span {
+      float: right;
+      padding: 4px 5px;
+      color: #fff;
+      font-size: 0.7em
+    }
+  }
+  
