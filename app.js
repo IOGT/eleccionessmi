@@ -154,7 +154,7 @@ var app = new Vue({
           label: this.pidsInfo[pid].siglas,
           data: parseInt(votosPA[pid].num) || 0,
           color: this.pidsInfo[pid].color,
-          image: `/imagenes/${this.pidsInfo[pid].siglas}.png`
+          image: `/imagenes/${this.pidsInfo[pid].siglas.toLowerCase()}.png`
         }));
 
         console.log(partidos_votos)
