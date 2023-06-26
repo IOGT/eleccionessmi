@@ -1,59 +1,82 @@
 <!-- HTML5 BASE TEMPLATE-->
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Elecciones SMI 2023 por IO.GT</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="progress.css">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="progress.css" />
     <!-- page will reload every 10 minutes -->
-    <meta http-equiv="refresh" content="600">
-</head>
-<body>
+    <meta http-equiv="refresh" content="600" />
+  </head>
+  <body>
     <div class="container text-center" id="app">
-        <h1>Eleciones SMI 2023</h1>
-        <div class="bar" :style="{ width: progress + '%' }">
-      <span>{{ progress }}%</span>
-    </div>
-        <div class="row align-items-start">
-            <!-- <div class="col-2">
+      <h1>Eleciones SMI 2023</h1>
+      <div
+        class="progress"
+        role="progressbar"
+        aria-label="Actas contabilizadas"
+        :aria-valuenow="progress"
+        aria-valuemin="0"
+        aria-valuemax="100"
+      >
+        <div
+          class="progress-bar progress-bar-striped progress-bar-animated"
+          :style="{ width: progress + '%' }"
+        ></div>
+      </div>
+      <div class="row align-items-start">
+        <!-- <div class="col-2">
                 <vue-chart :data="progressData" type="pie"></vue-chart>
             </div> -->
-            <div class="col">
-                <vue-chart :data="chartData" :options="{scales: {yAxes: [{ticks: {beginAtZero: true}}]}}" :update-config="{duration: 800, easing: 'easeOutBounce'}" type="bar" />
-            </div>
+        <div class="col">
+          <vue-chart
+            :data="chartData"
+            :options="{scales: {yAxes: [{ticks: {beginAtZero: true}}]}}"
+            :update-config="{duration: 800, easing: 'easeOutBounce'}"
+            type="bar"
+          />
         </div>
+      </div>
     </div>
     <!-- Footer with credits -->
     <footer class="footer">
-        <div class="container">
-            <span class="text-muted">Desarrollado por <a href="https://io.gt">IO.GT</a> 
-                con el apoyo de <a href="https://ixtatan.com">IXTATAN</a>
-                e <a href="https://www.ixtanet.com/">IXTANET</a>
-            </span>
-        </div>
+      <div class="container">
+        <span class="text-muted"
+          >Desarrollado por <a href="https://io.gt">IO.GT</a> con el apoyo de
+          <a href="https://ixtatan.com">IXTATAN</a> e
+          <a href="https://www.ixtanet.com/">IXTANET</a>
+        </span>
+      </div>
     </footer>
 
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>	
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
     <script src="https://unpkg.com/vuechart"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
     <script>
-        // Generate a random query string
-        var randomString = Math.random().toString(36).substring(7);
-      
-        // Get the script element
-        var scriptElement = document.createElement('script');
-      
-        // Set the source attribute with the random query string
-        scriptElement.src = 'app.js?cache=' + randomString;
-      
-        // Append the script element to the document
-        document.body.appendChild(scriptElement);
-      </script>
-</body>
+      // Generate a random query string
+      var randomString = Math.random().toString(36).substring(7);
 
+      // Get the script element
+      var scriptElement = document.createElement("script");
+
+      // Set the source attribute with the random query string
+      scriptElement.src = "app.js?cache=" + randomString;
+
+      // Append the script element to the document
+      document.body.appendChild(scriptElement);
+    </script>
+  </body>
 </html>

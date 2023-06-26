@@ -62,7 +62,7 @@ function hexToRgb(hex) {
           .get(url)
           .then((response) => {
             // this.data = response.data;
-            console.log(response.data.divs[17]);
+            // console.log(response.data.divs[17]);
             let data_municipio = response.data.divs[17];
             this.pidsInfo = data_municipio.pidsInfo;
             this.pidsPA = data_municipio.pidsPA;
@@ -75,7 +75,7 @@ function hexToRgb(hex) {
               hexToRgb(this.pidsInfo[pid].color)
             );
             const votos_partidos = this.pidsPA.map(
-              (pid) => votosPA[pid].num + 50
+              (pid) => parseInt(votosPA[pid].num)
             );
             this.chartData.labels = partidos_names;
             this.chartData.datasets[0].data = votos_partidos;
@@ -101,14 +101,14 @@ function hexToRgb(hex) {
             );
 
             const totalActas = data_municipio.stats.actas.num
-            console.log(totalActas)
+            // console.log(totalActas)
             const actasDigitadas = data_municipio.stats.actas.capt.num
-            console.log(actasDigitadas)
+            // console.log(actasDigitadas)
             const actasContabilizadas = data_municipio.stats.actas.cont.num
-            console.log(actasContabilizadas)
+            // console.log(actasContabilizadas)
 
             const porcentajeContabilizada = data_municipio.stats.actas.cont.pct4
-            console.log(porcentajeContabilizada)
+            // console.log(porcentajeContabilizada)
             // progress rounded to 2 decimals
             this.progress = Math.round(porcentajeContabilizada * 100) / 100
           })
