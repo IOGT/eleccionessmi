@@ -29,9 +29,6 @@ function hexToRgb(hex) {
 }
 var app = new Vue({
   el: "#app",
-  components: {
-    apexchart: VueApexCharts,
-  },
   data: {
     progress: 0,
     totalActas: 0,
