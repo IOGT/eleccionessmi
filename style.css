@@ -2,3 +2,7 @@
 width: 100%;
 padding-bottom: 45px;
 }
+
+div.col div{
+    position: inherit !important;
+}

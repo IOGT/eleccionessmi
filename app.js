@@ -106,81 +106,99 @@ var app = new Vue({
   },
   methods: {
     fetchData() {
-      const url =
+      const urlCorte =
         "https://corsproxy.io/?" +
         encodeURIComponent(
-          "https://trep.gt/ext/jsonData_gtm2023/1687736870/1687747548/gtm2023_tc4_e13.json"
+          "https://trep.gt/ext/jsonData_gtm2023/ultimoCorte.json"
         );
-      axios
-        .get(url)
-        .then((response) => {
-          // this.data = response.data;
-          // console.log(response.data.divs[17]);
-          let data_municipio = response.data.divs[17];
-          this.pidsInfo = data_municipio.pidsInfo;
-          this.pidsPA = data_municipio.pidsPA;
-          let votosPA = data_municipio.votosPA;
-          console.log(data_municipio)
-          console.log(votosPA)
 
-          const partidos_names = this.pidsPA.map(
-            (pid) => this.pidsInfo[pid].siglas
-          );
-          const partidos_colores = this.pidsPA.map((pid) =>
-            hexToRgb(this.pidsInfo[pid].color)
-          );
-          const votos_partidos = this.pidsPA.map(
-            (pid) => parseInt(votosPA[pid].num) || 0
-          );
-          console.log(votos_partidos);
-          this.chartData.labels = partidos_names;
-          this.chartData.datasets[0].data = votos_partidos;
-          // this.chartOptions.series[0].data = votos_partidos;
+      axios.get(urlCorte).then((response) => {
+        console.log("Ultimo corte")
+        console.log(response.data.dir)
+        const ultimoCorte = response.data.dir;
 
-          this.chartData.backgroundColor = partidos_colores;
-          this.chartData.datasets[0].backgroundColor = partidos_colores.map(
-            (color) => `rgba(${color.r}, ${color.g}, ${color.b}, 0.2)`
-          );
-          this.chartData.datasets[0].borderColor = partidos_colores.map(
-            (color) => `rgba(${color.r}, ${color.g}, ${color.b}, 0.2)`
-          );
+        
+      const url =
+      "https://corsproxy.io/?" +
+      encodeURIComponent(
+        `https://trep.gt/ext/jsonData_gtm2023/${ultimoCorte}/gtm2023_tc4_e13.json`
+      );
+    axios
+      .get(url)
+      .then((response) => {
+        // this.data = response.data;
+        // console.log(response.data.divs[17]);
+        let data_municipio = response.data.divs[17];
+        this.pidsInfo = data_municipio.pidsInfo;
+        this.pidsPA = data_municipio.pidsPA;
+        let votosPA = data_municipio.votosPA;
+        console.log(data_municipio)
+        console.log(votosPA)
 
-          // Calculate the sum of all data points
-          const sum = votos_partidos.reduce((total, value) => total + value, 0);
+        const partidos_names = this.pidsPA.map(
+          (pid) => this.pidsInfo[pid].siglas
+        );
+        const partidos_colores = this.pidsPA.map((pid) =>
+          hexToRgb(this.pidsInfo[pid].color)
+        );
+        const votos_partidos = this.pidsPA.map(
+          (pid) => parseInt(votosPA[pid].num) || 0
+        );
+        console.log(votos_partidos);
+        this.chartData.labels = partidos_names;
+        this.chartData.datasets[0].data = votos_partidos;
+        // this.chartOptions.series[0].data = votos_partidos;
 
-          // Calculate the relative percentage for each data point
-          const relativePercentages = votos_partidos.map(
-            (value) => ((value / sum) * 100).toFixed(2) + "%"
-          );
+        this.chartData.backgroundColor = partidos_colores;
+        this.chartData.datasets[0].backgroundColor = partidos_colores.map(
+          (color) => `rgba(${color.r}, ${color.g}, ${color.b}, 0.2)`
+        );
+        this.chartData.datasets[0].borderColor = partidos_colores.map(
+          (color) => `rgba(${color.r}, ${color.g}, ${color.b}, 0.2)`
+        );
 
-          // Add the relative percentages to the chart labels
-          this.chartData.labels = partidos_names.map(
-            (name, index) => `${name} (${relativePercentages[index]})`
-          );
+        // Calculate the sum of all data points
+        const sum = votos_partidos.reduce((total, value) => total + value, 0);
 
-          this.chartOptions.xaxis.categories =  partidos_names.map(
-            (name, index) => `${name} (${relativePercentages[index]})`
-          );
+        // Calculate the relative percentage for each data point
+        const relativePercentages = votos_partidos.map(
+          (value) => ((value / sum) * 100).toFixed(2) + "%"
+        );
 
-          const totalActas = data_municipio.stats.actas.num;
-          this.totalActas = totalActas;
-          // console.log(totalActas)
-          const actasDigitadas = data_municipio.stats.actas.capt.num;
-          this.actasDigitadas = actasDigitadas;
-          // console.log(actasDigitadas)
-          const actasContabilizadas = data_municipio.stats.actas.cont.num;
-          this.actasContabilizadas = actasContabilizadas;
-          // console.log(actasContabilizadas)
+        // Add the relative percentages to the chart labels
+        this.chartData.labels = partidos_names.map(
+          (name, index) => `${name} (${relativePercentages[index]})`
+        );
 
-          const porcentajeContabilizada = data_municipio.stats.actas.cont.pct4;
-          // console.log(porcentajeContabilizada)
-          // progress rounded to 2 decimals
-          this.progress = Math.round(porcentajeContabilizada * 100) / 100;
-          // this.progress = 50
-        })
-        .catch((error) => {
-          console.error("Error fetching data:", error);
-        });
+        this.chartOptions.xaxis.categories =  partidos_names.map(
+          (name, index) => `${name} (${relativePercentages[index]})`
+        );
+
+        const totalActas = data_municipio.stats.actas.num;
+        this.totalActas = totalActas;
+        // console.log(totalActas)
+        const actasDigitadas = data_municipio.stats.actas.capt.num;
+        this.actasDigitadas = actasDigitadas;
+        // console.log(actasDigitadas)
+        const actasContabilizadas = data_municipio.stats.actas.cont.num;
+        this.actasContabilizadas = actasContabilizadas;
+        // console.log(actasContabilizadas)
+
+        const porcentajeContabilizada = data_municipio.stats.actas.cont.pct4;
+        // console.log(porcentajeContabilizada)
+        // progress rounded to 2 decimals
+        this.progress = Math.round(porcentajeContabilizada * 100) / 100;
+        // this.progress = 50
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+
+
+      });
+
+
+
     },
   },
 });
