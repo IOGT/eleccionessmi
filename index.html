@@ -52,7 +52,7 @@
       >
         <div
           class="progress-bar progress-bar-striped progress-bar-animated overflow-visible text-dark"
-          :style="{ width: progress + '%' }"
+          :style="{ width: progress + '%', 'font-size': '1.5rem' }"
         >
           Actas contabilizadas {{actasContabilizadas}} de {{totalActas}} -
           {{progress}}%
@@ -63,7 +63,7 @@
                 <vue-chart :data="progressData" type="pie"></vue-chart>
             </div> -->
         <div class="col" style="height: 600px">
-          <vue-chart
+            <vue-chart
             :data="chartData"
             :options="{scales: {yAxes: [{ticks: {beginAtZero: true}}]}}"
             :update-config="{duration: 800, easing: 'easeOutBounce'}"
