@@ -110,8 +110,6 @@ var app = new Vue({
         );
 
       axios.get(urlCorte).then((response) => {
-        console.log("Ultimo corte")
-        console.log(response.data.dir)
         const ultimoCorte = response.data.dir;
 
         
@@ -123,14 +121,10 @@ var app = new Vue({
     axios
       .get(url)
       .then((response) => {
-        // this.data = response.data;
-        // console.log(response.data.divs[17]);
         let data_municipio = response.data.divs[17];
         this.pidsInfo = data_municipio.pidsInfo;
         this.pidsPA = data_municipio.pidsPA;
         let votosPA = data_municipio.votosPA;
-        console.log(data_municipio)
-        console.log(votosPA)
 
         const partidos_names = this.pidsPA.map(
           (pid) => this.pidsInfo[pid].siglas
@@ -141,7 +135,6 @@ var app = new Vue({
         const votos_partidos = this.pidsPA.map(
           (pid) => parseInt(votosPA[pid].num) || 0
         );
-        console.log(votos_partidos);
         this.chartData.labels = partidos_names;
         this.chartData.datasets[0].data = votos_partidos;
         // this.chartOptions.series[0].data = votos_partidos;
