@@ -37,7 +37,7 @@ var app = new Vue({
             ticks: {
               beginAtZero: true,
               minor: {
-                fontSize: 18
+                fontSize: 14
              }
           }
         }
