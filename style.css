@@ -2,3 +2,18 @@
     height: 172px;
     padding-bottom: 27px;
 }
+.container {
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+@media (max-width: 767px) {
+    /* Styles for screens smaller than 768px (mobile devices) */
+    .container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    canvas {
+        height: 303px !important;
+    }
+}
